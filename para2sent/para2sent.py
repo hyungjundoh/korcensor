@@ -13,8 +13,9 @@ with open('paragraph.csv', mode='r', encoding='utf-8') as file:
 
 with open('sentence.csv', mode='w', encoding='utf-8') as file:
     wr = csv.writer(file)
+    print("paragraph to sentence proceed")
     for srg in list:
         wr.writerow([srg])
-    print(list)
+    #print(list)
 
 

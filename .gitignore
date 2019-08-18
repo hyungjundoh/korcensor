@@ -1,4 +1,5 @@
 *.idea
-
-
+dataset/
+*.csv
+*.xlsx
 \.\.gitignore\.un~

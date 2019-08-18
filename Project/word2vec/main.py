@@ -12,7 +12,7 @@ if __name__ == '__main__':
     word2vec_model_path = "word2vec.model"
     keyvector_save_path = "word2vec.kv"
 
-    csv_reader.clean_csv("../../dataset", "merged_file.csv", ignore_list)
+    csv_reader.clean_csv("../dataset", "merged_file.csv", ignore_list)
     reader = csv_reader.reader(csv_filepath)
     word_corpus = reader.read_csv()
     print(word_corpus)
