@@ -1,4 +1,10 @@
 *.idea
+*.csv
+*/dataset
+\.\.gitignore\.un~
+
+*.pyc
+
 dataset/
 *.csv
 *.xlsx
