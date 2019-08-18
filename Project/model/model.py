@@ -46,6 +46,7 @@ class model(models.Model):
         print("Saved weights successfully")
 
 
+# Used to load model from
 class model_loader():
     def __init__(self, json_filename, weight_filename, corpus_path, key_vector_path, ignore_list, model_length):
         with open(json_filename, 'r') as file:
@@ -88,6 +89,8 @@ if __name__ == "__main__":
 
     sentence = input()
     result = loaded_model.predict(sentence)
+    print("Predicted result: ")
+    print(result)
     if (result[0][1] > result[0][0]):
         print("Censor")
     else:
