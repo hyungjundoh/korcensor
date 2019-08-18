@@ -1,4 +1,6 @@
 *.idea
-
-
+*.csv
+*/dataset
 \.\.gitignore\.un~
+
+*.pyc
