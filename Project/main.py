@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     model_length = 100
     batch_size = 100
-    epochs = 3
+    epochs = 50
 
     # Create model with model_length 100 and batch size 100
     my_model = model(model_length, batch_size)
