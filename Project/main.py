@@ -55,7 +55,7 @@ class model(models.Model):
 
 # Used to load model
 class model_loader():
-    def __init__(self, json_filename, weight_filename, corpus_path, key_vector_path, ignore_list, model_length):
+    def __init__(self, json_filename, weight_filename, model_path, key_vector_path, ignore_list, model_length):
         with open(json_filename, 'r') as file:
             loaded_from_json = file.read()
             loaded_model = model_from_json(
@@ -94,22 +94,22 @@ if __name__ == "__main__":
                                    key_vector_path, ignore_list, 0.2, epochs)
     print("training model...")
 
+    # Train and save model to given filepath
+    my_model.save_model(json_filename, weight_filename)
+
     # Plot the train history
-    plt.plot(train_history.history['acc'])
-    plt.plot(train_history.history['val_acc'])
+    plt.plot(train_history.history['accuracy'])
+    plt.plot(train_history.history['val_accuracy'])
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')
     plt.legend(['Train', 'Test'], loc='upper left')
     plt.gcf().savefig(train_graph_save_path)
     plt.show()
-
-    # Train and save model to given filepath
-    my_model.save_model(json_filename, weight_filename)
     # Save graph representation of current model
     plot_model(my_model, to_file=model_graph_save_path)
     loaded_model = model_loader(
-        json_filename, weight_filename, corpus_path, key_vector_path, ignore_list, model_length)
+        json_filename, weight_filename, model_path, key_vector_path, ignore_list, model_length)
 
     sentence = input()
     result = loaded_model.predict(sentence)
