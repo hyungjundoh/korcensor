@@ -1,7 +1,6 @@
 import numpy as np
 from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec, KeyedVectors
-import csv_reader
 import os
 import multiprocessing
 
@@ -19,7 +18,7 @@ class word2vec:
         if (not os.path.exists(self.model_path)):
             print("Pretrained model does not exist... creating new model")
             model = Word2Vec(text_data, size=100, window=10,
-                             min_count=5, workers=multiprocessing.cpu_count() - 1, iter=100, sg=int(self.mode))
+                             min_count=3, workers=multiprocessing.cpu_count() - 1, iter=1000, sg=int(self.mode))
             model.save(self.model_path)
         else:
             print("Loaded pretrained model from" + self.model_path)
@@ -46,4 +45,10 @@ class word2vec:
 
     # Gets embeded word vector from saved keyvector as numpy array
     def get_vector(self, word):
-        return np.array(self.key_vector[word])
+        try:
+            array = self.key_vector[word]
+            # print(len(array))
+        except:
+            array = [0]*100
+            # print(array.shape)
+        return array

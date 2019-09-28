@@ -2,7 +2,6 @@ import word2vec.word2vec as w2v
 import word2vec.csv_reader as csv_reader
 from soynlp.tokenizer import RegexTokenizer
 from gensim.models import Word2Vec, KeyedVectors
-import model
 import csv
 import random
 import numpy as np

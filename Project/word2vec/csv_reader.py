@@ -30,6 +30,8 @@ def is_valid_word(word, ignore_list):
     return True
 
 
+# Tokenizes the sentnece into list and eliminates invalid words
+# returns list of toeknized sentences
 def clean_csv(dataset_file_dir, merged_file_save_path, ignore_list):
     sentence_list = []
     for filepath in os.listdir(dataset_file_dir):
