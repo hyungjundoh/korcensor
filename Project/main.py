@@ -71,10 +71,8 @@ class model_loader():
         self.model_length = model_length
 
     def predict(self, sentence):
-        print("predict")
         vector_array = self.manager.convert_to_vector_list(
             self.ignore_list, self.model_length, sentence)
-        print(vector_array)
         return self.model.predict(np.array([vector_array]), steps=1)
 
 
@@ -87,7 +85,7 @@ if __name__ == "__main__":
     train_graph_save_path = "graphs/train_graph.png"
     model_graph_save_path = "graphs/model_graph.png"
 
-    model_length = 50
+    model_length = 30
     batch_size = 100
     epochs = 100
 
@@ -95,15 +93,15 @@ if __name__ == "__main__":
     my_model = model(model_length, batch_size)
     my_model.build_model()
     train_history = my_model.train(corpus_path, model_path,
-                                   key_vector_path, ignore_list, 0.2, epochs)
+                                   key_vector_path, ignore_list, 0.1, epochs)
     print("training model...")
 
     # Train and save model to given filepath
     my_model.save_model(json_filename, weight_filename)
 
     # Plot the train history
-    plt.plot(train_history.history['acc'])
-    plt.plot(train_history.history['val_acc'])
+    plt.plot(train_history.history['accuracy'])
+    plt.plot(train_history.history['val_accuracy'])
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')
