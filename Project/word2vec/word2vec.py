@@ -49,6 +49,6 @@ class word2vec:
             array = self.key_vector[word]
             # print(len(array))
         except:
-            array = [0]*100
+            array = [1]*100
             # print(array.shape)
         return array
