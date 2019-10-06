@@ -40,6 +40,8 @@ class model(models.Model):
         corpus_input, corpus_label = manager.prepare_corpus(
             ignore_list, self.model_length, corpus_path)
 
+        print(np.array(corpus_input).shape)
+
         train_history = self.fit(np.array(corpus_input), np.array(corpus_label), self.batch_size,
                                  epochs, validation_split=validation_split)
 
@@ -71,6 +73,7 @@ class model_loader():
     def predict(self, sentence):
         vector_array = self.manager.convert_to_vector_list(
             self.ignore_list, self.model_length, sentence)
+        print(vector_array)
         return self.model.predict(np.array([vector_array]), steps=1)
 
 
@@ -83,7 +86,7 @@ if __name__ == "__main__":
     train_graph_save_path = "graphs/train_graph.png"
     model_graph_save_path = "graphs/model_graph.png"
 
-    model_length = 100
+    model_length = 50
     batch_size = 100
     epochs = 50
 
@@ -98,8 +101,8 @@ if __name__ == "__main__":
     my_model.save_model(json_filename, weight_filename)
 
     # Plot the train history
-    plt.plot(train_history.history['accuracy'])
-    plt.plot(train_history.history['val_accuracy'])
+    plt.plot(train_history.history['acc'])
+    plt.plot(train_history.history['val_acc'])
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')

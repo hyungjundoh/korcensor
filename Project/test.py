@@ -17,7 +17,7 @@ if __name__ == '__main__':
     train_graph_save_path = "graphs/train_graph.png"
     model_graph_save_path = "graphs/model_graph.png"
 
-    model_length = 100
+    model_length = 50
 
     loaded_model = main.model_loader(
         json_filename, weight_filename, corpus_path, key_vector_path, main.ignore_list, model_length)

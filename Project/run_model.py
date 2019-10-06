@@ -25,14 +25,14 @@ class data_manager():
             try:
                 array = kv[elem]
             except:
-                array = [0] * 100
+                array = [1] * 100
             vector_list.append(array)
 
         while (len(vector_list) < model_length):
             vector_list.append([0]*100)
 
-        if (len(vector_list) > 100):
-            vector_list = vector_list[:100]
+        if (len(vector_list) > model_length):
+            vector_list = vector_list[:model_length]
         return np.array(vector_list)
         # Prepare the corpus from given corpus path
 
@@ -64,8 +64,8 @@ class data_manager():
                 while (len(vector_list) < model_length):
                     vector_list.append([0]*100)
 
-                if (len(vector_list) > 100):
-                    vector_list = vector_list[:100]
+                if (len(vector_list) > model_length):
+                    vector_list = vector_list[:model_length]
                 # print(np.array(vector_list).shape)
                 data_list.append(np.array(vector_list))
                 label_list.append(np.array(label))
