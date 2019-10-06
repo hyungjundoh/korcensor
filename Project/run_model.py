@@ -20,16 +20,17 @@ class data_manager():
         clean_sentence = [
             elem for elem in tokenized_sentence if csv_reader.is_valid_word(elem, ignore_list)]
 
-        vector_list = []
+        vector = []
         for elem in clean_sentence:
             try:
                 array = kv[elem]
             except:
                 array = [1] * 100
-            vector_list.append(array)
+            vector.append(array)
 
+        vector_list = []
         while (len(vector_list) < model_length):
-            vector_list.append([0]*100)
+            vector_list += vector
 
         if (len(vector_list) > model_length):
             vector_list = vector_list[:model_length]
@@ -59,16 +60,20 @@ class data_manager():
                 clean_sentence = [
                     elem for elem in tokenized_sentence if csv_reader.is_valid_word(elem, ignore_list)]
 
-                vector_list = [myw2v.get_vector(elem)
-                               for elem in clean_sentence]
-                while (len(vector_list) < model_length):
-                    vector_list.append([0]*100)
+                vector = [myw2v.get_vector(elem)
+                          for elem in clean_sentence]
+                print("length: " + str(len(vector)))
 
-                if (len(vector_list) > model_length):
-                    vector_list = vector_list[:model_length]
-                # print(np.array(vector_list).shape)
-                data_list.append(np.array(vector_list))
-                label_list.append(np.array(label))
+                if(len(vector) > 0):
+                    vector_list = []
+                    while (len(vector_list) < model_length):
+                        vector_list += vector
+
+                    if (len(vector_list) > model_length):
+                        vector_list = vector_list[:model_length]
+                    # print(np.array(vector_list).shape)
+                    data_list.append(np.array(vector_list))
+                    label_list.append(np.array(label))
 
         train_input = data_list
         train_label = label_list

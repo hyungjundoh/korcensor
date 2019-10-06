@@ -71,6 +71,7 @@ class model_loader():
         self.model_length = model_length
 
     def predict(self, sentence):
+        print("predict")
         vector_array = self.manager.convert_to_vector_list(
             self.ignore_list, self.model_length, sentence)
         print(vector_array)
@@ -88,7 +89,7 @@ if __name__ == "__main__":
 
     model_length = 50
     batch_size = 100
-    epochs = 50
+    epochs = 100
 
     # Create model with model_length 100 and batch size 100
     my_model = model(model_length, batch_size)
