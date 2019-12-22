@@ -2,10 +2,8 @@ import numpy as np
 import csv_reader
 import word2vec as w2v
 
-
 ignore_list = ['+', '=', '<', '>', '(', ')', '\\', ':', '.', "'", '*', '-', '&', '1', '2', '3', '4', '5', '6', '7',
-               '8', '9', '0', '!', '?', 'it', "=", ",", '.', ',', 'jpg', 'gif', '"', 'gis', 'JPG', 'n', 'ㄹ', 't']
-
+               '8', '9', '0', '!', '?', 'it', "=", ",", '.', ',', 'jpg', 'gif', '"', 'gis', 'JPG', 'n',  't']
 
 if __name__ == '__main__':
     csv_filepath = "merged_file.csv"
@@ -24,4 +22,4 @@ if __name__ == '__main__':
     w2v_manager.train(word_corpus)
     w2v_manager.save_keyvector(keyvector_save_path)
     w2v_manager.load_keyvector(keyvector_save_path)
-    print(w2v_manager.get_vector('버스'))
+    # print(w2v_manager.get_vector('q'))

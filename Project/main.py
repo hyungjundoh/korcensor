@@ -16,10 +16,11 @@ class model(models.Model):
     def __init__(self, model_length=100, batch_size=100, inputs=None, outputs=None, name=None):
         self.model_length = model_length
         self.batch_size = batch_size
-        if (inputs != None and outputs != None):
+        if inputs is not None and outputs is not None:
             super().__init__(inputs, outputs)
 
-    # Build model with input shape 100, model_length (where 100 is dimension of w2v and model_length is length of LSTM sequence)
+    # Build model with input shape 100, model_length
+    # (where 100 is dimension of w2v and model_length is length of LSTM sequence)
     def build_model(self):  # dimension: 출력 후 벡터 크기
         # RNN_LSTM
         x = layers.Input(

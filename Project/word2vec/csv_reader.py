@@ -35,11 +35,11 @@ def is_valid_word(word, ignore_list):
 def clean_csv(dataset_file_dir, merged_file_save_path, ignore_list):
     sentence_list = []
     for filepath in os.listdir(dataset_file_dir):
-        if (filepath.endswith(".csv")):
+        if filepath.endswith(".csv"):
             entire_path = os.path.join(dataset_file_dir, filepath)
             with open(entire_path, newline="") as word_file:
-                reader = csv.reader(word_file)
-                for row in reader:
+                csv_reader = csv.reader(word_file)
+                for row in csv_reader:
                     sentence_list.append(row)
 
     tokenized_sentence_list = []
